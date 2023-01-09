@@ -210,10 +210,6 @@ class ThumbnailImage extends MediaTransformOutput {
         );
 
         $p = Html::openElement('picture');
-        $p .= Html::element('source', [
-            'srcset' => $attribs['srcset'],
-            'type' => $this->file->getMimeType(),
-        ] );
 
         foreach ($sources as $url => $mime) {
             $p .= Html::element('source', [
