@@ -214,7 +214,7 @@ class ThumbnailImage extends MediaTransformOutput {
         foreach ( $sources as $source ) {
             // <source> should always have a valid srcset when inside <picture>
             if ( ! $source['srcset'] ) {
-                return;
+                continue;
             }
 
             $sourceAttribs = [
