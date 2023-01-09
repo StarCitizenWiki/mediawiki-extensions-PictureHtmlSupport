@@ -1,0 +1,17 @@
+{
+	"name": "ThumbnailerExt",
+	"author": [
+		"Octfx"
+	],
+	"url": "https://www.mediawiki.org/wiki/Extension:ThumbnailerExt",
+	"descriptionmsg": "thumbnailer-ext-desc",
+	"license-name": "GPL-2.0-or-later",
+	"type": "other",
+	"requires": {
+		"MediaWiki": ">= 1.35.0"
+	},
+	"AutoloadClasses": {
+		"ThumbnailImage": "includes/ThumbnailImage.php"
+	},
+	"manifest_version": 2
+}
