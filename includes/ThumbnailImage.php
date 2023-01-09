@@ -209,21 +209,23 @@ class ThumbnailImage extends MediaTransformOutput {
             ]
         );
 
-        $p = Xml::openElement('picture');
-        $p .= Xml::element('source', [
+        $p = Html::openElement('picture');
+        $p .= Html::element('source', [
             'srcset' => $attribs['srcset'],
             'type' => $this->file->getMimeType(),
         ] );
 
         foreach ($sources as $url => $mime) {
-            $p .= Xml::element('source', [
+            $p .= Html::element('source', [
                 'src' => $url,
                 'type' => $mime,
             ] );
         }
 
+        // Original image
         $p .= Xml::element( 'img', $attribs );
-        $p .= Xml::closeElement('picture');
+
+        $p .= Html::closeElement('picture');
 
         return $this->linkWrap( $linkAttribs, $p );
     }
