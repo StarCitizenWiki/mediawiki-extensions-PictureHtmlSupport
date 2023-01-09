@@ -1,6 +1,6 @@
-# ThumbnailerExt
+# PictureHtmlSupport
 
-`wfLoadExtension( 'ThumbnailerExt' )`
+`wfLoadExtension( 'PictureHtmlSupport' )`
 
 Add to `composer.local.json`:
 ```json
@@ -8,7 +8,7 @@ Add to `composer.local.json`:
     "extra": {
         "merge-plugin": {
             "include": [
-                "extensions/ThumbnailerExt/composer.json"
+                "extensions/PictureHtmlSupport/composer.json"
             ]
         }
     }

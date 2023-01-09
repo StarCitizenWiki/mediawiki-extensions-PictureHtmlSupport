@@ -1,10 +1,10 @@
 {
-	"name": "ThumbnailerExt",
+	"name": "PictureHtmlSupport",
 	"author": [
 		"Octfx"
 	],
-	"url": "https://www.mediawiki.org/wiki/Extension:ThumbnailerExt",
-	"descriptionmsg": "thumbnailer-ext-desc",
+	"url": "https://www.mediawiki.org/wiki/Extension:PictureHtmlSupport",
+	"descriptionmsg": "picture-html-support-desc",
 	"license-name": "GPL-2.0-or-later",
 	"type": "other",
 	"requires": {

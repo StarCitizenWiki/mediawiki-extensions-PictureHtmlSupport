@@ -199,11 +199,29 @@ class ThumbnailImage extends MediaTransformOutput {
 
         Hooks::runner()->onThumbnailBeforeProduceHTML( $this, $attribs, $linkAttribs );
 
+        $sources = [];
+
+        MediaWikiServices::getInstance()->getHookContainer()->run(
+            'PictureHtmlSupportBeforeProduceHtml',
+            [
+                $this,
+                &$sources,
+            ]
+        );
+
         $p = Xml::openElement('picture');
         $p .= Xml::element('source', [
-            'srcset' => $this->file->getUrl(),
+            'srcset' => $attribs['srcset'],
             'type' => $this->file->getMimeType(),
         ] );
+
+        foreach ($sources as $url => $mime) {
+            $p .= Xml::element('source', [
+                'src' => $url,
+                'type' => $mime,
+            ] );
+        }
+
         $p .= Xml::element( 'img', $attribs );
         $p .= Xml::closeElement('picture');
 
