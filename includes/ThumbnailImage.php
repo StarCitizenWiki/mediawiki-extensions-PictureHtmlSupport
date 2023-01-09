@@ -209,19 +209,41 @@ class ThumbnailImage extends MediaTransformOutput {
             ]
         );
 
-        $p = Html::openElement('picture');
+        $p = Html::openElement( 'picture' );
 
-        foreach ($sources as $url => $mime) {
-            $p .= Html::element('source', [
-                'src' => $url,
-                'type' => $mime,
-            ] );
+        foreach ( $sources as $source ) {
+            // <source> should always have a valid srcset when inside <picture>
+            if ( ! $source['srcset'] ) {
+                return;
+            }
+
+            $sourceAttribs = [
+                'srcset' => $source['srcset'],
+            ];
+
+            if ( !empty( $source['type'] ) ) {
+                $sourceAttribs['type'] = $source['type'];
+            }
+            if ( !empty( $source['sizes'] ) ) {
+                $sourceAttribs['sizes'] = $source['sizes'];
+            }
+            if ( !empty( $source['media'] ) ) {
+                $sourceAttribs['media'] = $source['media'];
+            }
+            if ( !empty( $source['width'] ) && $source['width'] !== $attribs['width'] ) {
+                $sourceAttribs['width'] = $source['width'];
+            }
+            if ( !empty( $source['height'] && $source['height'] !== $attribs['height'] ) ) {
+                $sourceAttribs['height'] = $source['height'];
+            }
+
+            $p .= Html::element( 'source' , $sourceAttribs );
         }
 
         // Original image
         $p .= Xml::element( 'img', $attribs );
 
-        $p .= Html::closeElement('picture');
+        $p .= Html::closeElement( 'picture' );
 
         return $this->linkWrap( $linkAttribs, $p );
     }

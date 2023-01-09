@@ -6,5 +6,5 @@ use ThumbnailImage;
 
 interface PictureHtmlSupportBeforeProduceHtml
 {
-    public function onPictureHtmlSupportBeforeProduceHtml( ThumbnailImage $image, array &$urls ): void;
+    public function onPictureHtmlSupportBeforeProduceHtml( ThumbnailImage $thumbnail, array &$sources ): void;
 }
