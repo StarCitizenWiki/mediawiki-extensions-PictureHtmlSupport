@@ -22,10 +22,8 @@
  * @ingroup Media
  */
 
-use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Title\Title;
 
 /**
  * Media transform output for images
