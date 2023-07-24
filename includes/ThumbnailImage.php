@@ -201,6 +201,7 @@ class ThumbnailImage extends MediaTransformOutput {
 
         $sources = [];
 
+		// Run PictureHtmlSupport hook
 		MediaWikiServices::getInstance()->getHookContainer()->run(
             'PictureHtmlSupportBeforeProduceHtml',
             [
@@ -209,7 +210,7 @@ class ThumbnailImage extends MediaTransformOutput {
             ]
         );
 
-        // Move srcset to source element
+        // Move srcset from img to source element
 		$sources[] = [ 'srcset' => $attribs['srcset'] ];
 		unset( $attribs['srcset'] );
 
