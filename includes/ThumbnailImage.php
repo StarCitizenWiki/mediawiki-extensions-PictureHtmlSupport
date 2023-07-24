@@ -22,8 +22,10 @@
  * @ingroup Media
  */
 
+use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 
 /**
  * Media transform output for images
@@ -210,46 +212,42 @@ class ThumbnailImage extends MediaTransformOutput {
 			]
 		);
 
-		// Move srcset from img to source element
-		$sources[] = [ 'srcset' => $attribs['srcset'] ];
-		unset( $attribs['srcset'] );
+        $p = Html::openElement( 'picture' );
 
-		$p = Html::openElement( 'picture' );
+        foreach ( $sources as $source ) {
+            // <source> should always have a valid srcset when inside <picture>
+            if ( !$source['srcset'] ) {
+                continue;
+            }
 
-		foreach ( $sources as $source ) {
-			// <source> should always have a valid srcset when inside <picture>
-			if ( ! $source['srcset'] ) {
-				continue;
-			}
+            $sourceAttribs = [
+                'srcset' => $source['srcset'],
+            ];
 
-			$sourceAttribs = [
-				'srcset' => $source['srcset'],
-			];
+            if ( !empty( $source['type'] ) ) {
+                $sourceAttribs['type'] = $source['type'];
+            }
+            if ( !empty( $source['sizes'] ) ) {
+                $sourceAttribs['sizes'] = $source['sizes'];
+            }
+            if ( !empty( $source['media'] ) ) {
+                $sourceAttribs['media'] = $source['media'];
+            }
+            if ( !empty( $source['width'] ) && $source['width'] !== $attribs['width'] ) {
+                $sourceAttribs['width'] = $source['width'];
+            }
+            if ( !empty( $source['height'] && $source['height'] !== $attribs['height'] ) ) {
+                $sourceAttribs['height'] = $source['height'];
+            }
 
-			if ( !empty( $source['type'] ) ) {
-				$sourceAttribs['type'] = $source['type'];
-			}
-			if ( !empty( $source['sizes'] ) ) {
-				$sourceAttribs['sizes'] = $source['sizes'];
-			}
-			if ( !empty( $source['media'] ) ) {
-				$sourceAttribs['media'] = $source['media'];
-			}
-			if ( !empty( $source['width'] ) && $source['width'] !== $attribs['width'] ) {
-				$sourceAttribs['width'] = $source['width'];
-			}
-			if ( !empty( $source['height'] && $source['height'] !== $attribs['height'] ) ) {
-				$sourceAttribs['height'] = $source['height'];
-			}
+            $p .= Html::element( 'source' , $sourceAttribs );
+        }
 
-			$p .= Html::element( 'source' , $sourceAttribs );
-		}
+        // Original image
+        $p .= Xml::element( 'img', $attribs );
 
-		// Original image
-		$p .= Xml::element( 'img', $attribs );
+        $p .= Html::closeElement( 'picture' );
 
-		$p .= Html::closeElement( 'picture' );
-
-		return $this->linkWrap( $linkAttribs, $p );
-	}
+        return $this->linkWrap( $linkAttribs, $p );
+    }
 }

@@ -1,7 +1,8 @@
 {
 	"name": "PictureHtmlSupport",
 	"author": [
-		"Octfx"
+		"Octfx",
+		"alistair3149"
 	],
 	"url": "https://www.mediawiki.org/wiki/Extension:PictureHtmlSupport",
 	"descriptionmsg": "picture-html-support-desc",
@@ -9,6 +10,16 @@
 	"type": "other",
 	"requires": {
 		"MediaWiki": ">= 1.39.0"
+	},
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\PictureHtmlSupport\\": "src/"
+	},
+	"config": {
+		"PictureHtmlSupportEnable": {
+			"value": true,
+			"description": "Whether to output <picture> or <img> elements",
+			"public": true
+		}
 	},
 	"AutoloadClasses": {
 		"ThumbnailImage": "includes/ThumbnailImage.php"
