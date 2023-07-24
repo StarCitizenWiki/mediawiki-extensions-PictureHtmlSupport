@@ -212,42 +212,46 @@ class ThumbnailImage extends MediaTransformOutput {
 			]
 		);
 
-        $p = Html::openElement( 'picture' );
+		// Move srcset from img to source element
+		$sources[] = [ 'srcset' => $attribs['srcset'] ];
+		unset( $attribs['srcset'] );
 
-        foreach ( $sources as $source ) {
-            // <source> should always have a valid srcset when inside <picture>
-            if ( !$source['srcset'] ) {
-                continue;
-            }
+		$p = Html::openElement( 'picture' );
 
-            $sourceAttribs = [
-                'srcset' => $source['srcset'],
-            ];
+		foreach ( $sources as $source ) {
+			// <source> should always have a valid srcset when inside <picture>
+			if ( !$source['srcset'] ) {
+				continue;
+			}
 
-            if ( !empty( $source['type'] ) ) {
-                $sourceAttribs['type'] = $source['type'];
-            }
-            if ( !empty( $source['sizes'] ) ) {
-                $sourceAttribs['sizes'] = $source['sizes'];
-            }
-            if ( !empty( $source['media'] ) ) {
-                $sourceAttribs['media'] = $source['media'];
-            }
-            if ( !empty( $source['width'] ) && $source['width'] !== $attribs['width'] ) {
-                $sourceAttribs['width'] = $source['width'];
-            }
-            if ( !empty( $source['height'] && $source['height'] !== $attribs['height'] ) ) {
-                $sourceAttribs['height'] = $source['height'];
-            }
+			$sourceAttribs = [
+				'srcset' => $source['srcset'],
+			];
 
-            $p .= Html::element( 'source' , $sourceAttribs );
-        }
+			if ( !empty( $source['type'] ) ) {
+				$sourceAttribs['type'] = $source['type'];
+			}
+			if ( !empty( $source['sizes'] ) ) {
+				$sourceAttribs['sizes'] = $source['sizes'];
+			}
+			if ( !empty( $source['media'] ) ) {
+				$sourceAttribs['media'] = $source['media'];
+			}
+			if ( !empty( $source['width'] ) && $source['width'] !== $attribs['width'] ) {
+				$sourceAttribs['width'] = $source['width'];
+			}
+			if ( !empty( $source['height'] && $source['height'] !== $attribs['height'] ) ) {
+				$sourceAttribs['height'] = $source['height'];
+			}
 
-        // Original image
-        $p .= Xml::element( 'img', $attribs );
+			$p .= Html::element( 'source' , $sourceAttribs );
+		}
 
-        $p .= Html::closeElement( 'picture' );
+		// Original image
+		$p .= Xml::element( 'img', $attribs );
 
-        return $this->linkWrap( $linkAttribs, $p );
-    }
+		$p .= Html::closeElement( 'picture' );
+
+		return $this->linkWrap( $linkAttribs, $p );
+	}
 }
