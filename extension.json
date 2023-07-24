@@ -5,11 +5,17 @@
 		"alistair3149"
 	],
 	"url": "https://www.mediawiki.org/wiki/Extension:PictureHtmlSupport",
-	"descriptionmsg": "picture-html-support-desc",
+	"namemsg": "picturehtmlsupport",
+	"descriptionmsg": "picturehtmlsupport-desc",
 	"license-name": "GPL-2.0-or-later",
 	"type": "other",
 	"requires": {
 		"MediaWiki": ">= 1.39.0"
+	},
+	"MessagesDirs": {
+		"PictureHtmlSupport": [
+			"i18n"
+		]
 	},
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\PictureHtmlSupport\\": "src/"

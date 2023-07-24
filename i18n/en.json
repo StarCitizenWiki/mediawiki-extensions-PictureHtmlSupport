@@ -5,5 +5,6 @@
 			"[https://www.mediawiki.org/wiki/User:Octfx Octfx]"
 		]
 	},
-	"picture-html-support-desc": "A MediaWiki extension that wraps thumbnails with picture elements, and allows adding additional source elements"
+	"picturehtmlsupport": "PictureHtmlSupport",
+	"picturehtmlsupport-desc": "A MediaWiki extension that wraps thumbnails with picture elements, and allows adding additional source elements"
 }
