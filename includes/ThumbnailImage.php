@@ -211,8 +211,10 @@ class ThumbnailImage extends MediaTransformOutput {
 		);
 
 		// Move srcset from img to source element
-		$sources[] = [ 'srcset' => $attribs['srcset'] ];
-		unset( $attribs['srcset'] );
+        if ( isset( $attribs[ 'srcset' ] ) ) {
+            $sources[] = [ 'srcset' => $attribs['srcset'] ];
+            unset( $attribs['srcset'] );
+        }
 
 		$p = Html::openElement( 'picture' );
 
