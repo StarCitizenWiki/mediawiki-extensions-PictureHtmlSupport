@@ -24,7 +24,6 @@
 		"psr-4": {
 			"": "includes/"
 		},
-		"exclude-from-classmap": ["../../includes/media/ThumbnailImage.php"],
-		"files": ["includes/ThumbnailImage.php"]
+		"exclude-from-classmap": [ "../../includes/media/ThumbnailImage.php" ]
 	}
 }
