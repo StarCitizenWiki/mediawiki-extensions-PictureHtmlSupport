@@ -242,10 +242,10 @@ class ThumbnailImage extends MediaTransformOutput {
 			if ( !empty( $source['media'] ) ) {
 				$sourceAttribs['media'] = $source['media'];
 			}
-			if ( !empty( $source['width'] ) && $source['width'] !== $attribs['width'] ) {
+			if ( !empty( $source['width'] ) && !empty( $attribs['width'] ) && $source['width'] !== $attribs['width'] ) {
 				$sourceAttribs['width'] = $source['width'];
 			}
-			if ( !empty( $source['height'] && $source['height'] !== $attribs['height'] ) ) {
+			if ( !empty( $source['height'] ) && !empty( $attribs['height'] ) && $source['height'] !== $attribs['height'] ) {
 				$sourceAttribs['height'] = $source['height'];
 			}
 
