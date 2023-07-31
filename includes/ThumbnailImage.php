@@ -213,7 +213,7 @@ class ThumbnailImage extends MediaTransformOutput {
 
 		// Move srcset from img to source element
         if ( isset( $attribs[ 'srcset' ] ) ) {
-            $sources[] = [ 'srcset' => $attribs['srcset'] ];
+            $sources[] = [ 'srcset' => $this->url . ', ' . $attribs['srcset'] ];
             unset( $attribs['srcset'] );
         }
 
