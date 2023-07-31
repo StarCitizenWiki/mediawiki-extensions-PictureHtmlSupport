@@ -1,5 +1,5 @@
 {
-	"name": "mediawiki/picture-html-support",
+	"name": "starcitizenwiki/picture-html-support",
 	"description": "A MediaWiki extension that wraps thumbnails with picture elements, and allows adding additional source elements",
 	"require-dev": {
 		"mediawiki/mediawiki-codesniffer": "41.0.0",
