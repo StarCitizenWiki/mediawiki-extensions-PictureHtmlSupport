@@ -117,7 +117,7 @@ class ThumbnailImage extends MediaTransformOutput {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
 		$nativeImageLazyLoading = $mainConfig->get( MainConfigNames::NativeImageLazyLoading );
 		$enableLegacyMediaDOM = $mainConfig->get( MainConfigNames::ParserEnableLegacyMediaDOM );
-		$enablePictureElement = $mainConfig->get( 'PictureHtmlSupportEnable' );
+		$enablePictureElement = true; //$mainConfig->get( 'PictureHtmlSupportEnable' );
 
 		if ( func_num_args() == 2 ) {
 			throw new MWException( __METHOD__ . ' called in the old style' );
