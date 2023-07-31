@@ -21,6 +21,9 @@
 		"phpcs": "phpcs -sp --cache"
 	},
 	"autoload": {
+		"psr-4": {
+			"": "includes/"
+		},
 		"exclude-from-classmap": [ "../../includes/media/ThumbnailImage.php" ]
 	}
 }
