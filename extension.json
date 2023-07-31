@@ -27,8 +27,5 @@
 			"public": true
 		}
 	},
-	"AutoloadClasses": {
-		"ThumbnailImage": "includes/ThumbnailImage.php"
-	},
 	"manifest_version": 2
 }

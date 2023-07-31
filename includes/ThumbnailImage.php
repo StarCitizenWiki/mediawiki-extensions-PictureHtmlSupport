@@ -117,7 +117,7 @@ class ThumbnailImage extends MediaTransformOutput {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
 		$nativeImageLazyLoading = $mainConfig->get( MainConfigNames::NativeImageLazyLoading );
 		$enableLegacyMediaDOM = $mainConfig->get( MainConfigNames::ParserEnableLegacyMediaDOM );
-		$enablePictureElement = true; // $mainConfig->get( 'PictureHtmlSupportEnable' );
+		$enablePictureElement = $mainConfig->get( 'PictureHtmlSupportEnable' );
 
 		if ( func_num_args() == 2 ) {
 			throw new MWException( __METHOD__ . ' called in the old style' );
@@ -212,14 +212,14 @@ class ThumbnailImage extends MediaTransformOutput {
 		);
 
 		// Move srcset from img to source element
-		if ( isset( $attribs[ 'srcset' ] ) ) {
-			$sources[] = [ 'srcset' => $attribs['srcset'] ];
-			unset( $attribs['srcset'] );
-		}
+        if ( isset( $attribs[ 'srcset' ] ) ) {
+            $sources[] = [ 'srcset' => $attribs['srcset'] ];
+            unset( $attribs['srcset'] );
+        }
 
-		if ( $enablePictureElement === false ) {
-			return $this->linkWrap( $linkAttribs, Xml::element( 'img', $attribs ) );
-		}
+        if ( $enablePictureElement === false ) {
+            return $this->linkWrap( $linkAttribs, Xml::element( 'img', $attribs ) );
+        }
 
 		$p = Html::openElement( 'picture' );
 
@@ -249,7 +249,7 @@ class ThumbnailImage extends MediaTransformOutput {
 				$sourceAttribs['height'] = $source['height'];
 			}
 
-			$p .= Html::element( 'source', $sourceAttribs );
+			$p .= Html::element( 'source' , $sourceAttribs );
 		}
 
 		// Original image
