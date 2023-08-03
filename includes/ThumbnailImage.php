@@ -200,6 +200,10 @@ class ThumbnailImage extends MediaTransformOutput {
 
 		Hooks::runner()->onThumbnailBeforeProduceHTML( $this, $attribs, $linkAttribs );
 
+        if ( $enablePictureElement === false ) {
+            return $this->linkWrap( $linkAttribs, Xml::element( 'img', $attribs ) );
+        }
+
 		$sources = [];
 
 		// Run PictureHtmlSupport hook
@@ -215,10 +219,6 @@ class ThumbnailImage extends MediaTransformOutput {
         if ( isset( $attribs[ 'srcset' ] ) ) {
             $sources[] = [ 'srcset' => $this->url . ', ' . $attribs['srcset'] ];
             unset( $attribs['srcset'] );
-        }
-
-        if ( $enablePictureElement === false ) {
-            return $this->linkWrap( $linkAttribs, Xml::element( 'img', $attribs ) );
         }
 
 		$p = Html::openElement( 'picture' );
