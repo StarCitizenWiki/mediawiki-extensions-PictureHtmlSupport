@@ -8,16 +8,4 @@ The PictureHtmlSupport extension wraps MediaWiki thumbnails on wiki page with `<
     wfLoadExtension( 'PictureHtmlSupport' );
     ```
 
-2. Add to `composer.local.json`:
-    ```json
-    {
-        "extra": {
-            "merge-plugin": {
-                "include": [
-                    "extensions/PictureHtmlSupport/composer.json"
-                ]
-            }
-        }
-    }
-    ```
-3. Run `composer install` in root
+2. Replace `includes/media/ThumbnailImage.php` with `includes/ThumbnailImage.php` from this extension.
