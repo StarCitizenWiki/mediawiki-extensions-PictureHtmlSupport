@@ -1,5 +1,6 @@
 {
 	"name": "starcitizenwiki/picture-html-support",
+	"version": "1.0.0",
 	"type": "mediawiki-extension",
 	"description": "A MediaWiki extension that wraps thumbnails with picture elements, and allows adding additional source elements",
 	"require-dev": {

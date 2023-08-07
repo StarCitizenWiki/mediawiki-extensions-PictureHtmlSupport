@@ -8,4 +8,4 @@ The PictureHtmlSupport extension wraps MediaWiki thumbnails on wiki page with `<
     wfLoadExtension( 'PictureHtmlSupport' );
     ```
 
-2. Replace `includes/media/ThumbnailImage.php` with `includes/ThumbnailImage.php` from this extension.
+2. Replace `includes/media/ThumbnailImage.php` (make a backup!) with `includes/ThumbnailImage.php` from this extension.
