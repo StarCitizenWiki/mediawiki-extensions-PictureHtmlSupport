@@ -200,9 +200,9 @@ class ThumbnailImage extends MediaTransformOutput {
 
 		Hooks::runner()->onThumbnailBeforeProduceHTML( $this, $attribs, $linkAttribs );
 
-        if ( $enablePictureElement === false ) {
-            return $this->linkWrap( $linkAttribs, Xml::element( 'img', $attribs ) );
-        }
+		if ( $enablePictureElement === false ) {
+			return $this->linkWrap( $linkAttribs, Xml::element( 'img', $attribs ) );
+		}
 
 		$sources = [];
 
@@ -216,10 +216,10 @@ class ThumbnailImage extends MediaTransformOutput {
 		);
 
 		// Move srcset from img to source element
-        if ( isset( $attribs[ 'srcset' ] ) ) {
-            $sources[] = [ 'srcset' => $this->url . ', ' . $attribs['srcset'] ];
-            unset( $attribs['srcset'] );
-        }
+		if ( isset( $attribs[ 'srcset' ] ) ) {
+			$sources[] = [ 'srcset' => $this->url . ', ' . $attribs['srcset'] ];
+			unset( $attribs['srcset'] );
+		}
 
 		$p = Html::openElement( 'picture' );
 
@@ -249,7 +249,7 @@ class ThumbnailImage extends MediaTransformOutput {
 				$sourceAttribs['height'] = $source['height'];
 			}
 
-			$p .= Html::element( 'source' , $sourceAttribs );
+			$p .= Html::element( 'source', $sourceAttribs );
 		}
 
 		// Original image
@@ -257,6 +257,12 @@ class ThumbnailImage extends MediaTransformOutput {
 
 		$p .= Html::closeElement( 'picture' );
 
-		return $this->linkWrap( $linkAttribs, $p );
+		$sourceLink = Html::rawElement(
+			'a',
+			[ 'href' => $this->file->getUrl(), 'class' => 'mw-file-source' ],
+			'<!-- Image link for Crawlers -->'
+		);
+
+		return $this->linkWrap( $linkAttribs, $p ) . $sourceLink;
 	}
 }
