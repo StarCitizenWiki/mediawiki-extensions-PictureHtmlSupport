@@ -259,7 +259,11 @@ class ThumbnailImage extends MediaTransformOutput {
 
 		$sourceLink = Html::rawElement(
 			'a',
-			[ 'href' => $this->file->getUrl(), 'class' => 'mw-file-source' ],
+			[
+				'href' => $this->file->getUrl(),
+				'class' => 'mw-file-source',
+				'title' => $this->file->getTitle()->getFullText()
+			],
 			'<!-- Image link for Crawlers -->'
 		);
 
