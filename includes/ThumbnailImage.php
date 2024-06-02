@@ -157,8 +157,9 @@ class ThumbnailImage extends MediaTransformOutput {
 				'title' => empty( $options['title'] ) ? $title->getPrefixedText() : $options['title']
 			];
 		} elseif ( !empty( $options['desc-link'] ) ) {
+			// Get the title of the file page
 			$linkAttribs = $this->getDescLinkAttribs(
-				empty( $options['title'] ) ? null : $options['title'],
+				empty( $options['title'] ) ? $this->file->getTitle()->getPrefixedText() : $options['title'],
 				$query
 			);
 		} elseif ( !empty( $options['file-link'] ) ) {
