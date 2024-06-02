@@ -162,7 +162,11 @@ class ThumbnailImage extends MediaTransformOutput {
 				$query
 			);
 		} elseif ( !empty( $options['file-link'] ) ) {
-			$linkAttribs = [ 'href' => $this->file->getUrl() ];
+			$linkAttribs = [
+				'href' => $this->file->getUrl(),
+				// Get the title of the file page
+				'title' => $this->file->getTitle()->getPrefixedText()
+			];
 		} else {
 			$linkAttribs = false;
 			if ( !empty( $options['title'] ) ) {
@@ -262,7 +266,8 @@ class ThumbnailImage extends MediaTransformOutput {
 			[
 				'href' => $this->file->getUrl(),
 				'class' => 'mw-file-source',
-				'title' => $this->file->getTitle()->getFullText()
+				// FIXME: Need i18n
+				'title' => 'View source image'
 			],
 			'<!-- Image link for Crawlers -->'
 		);
