@@ -24,5 +24,10 @@
 	"autoload": {
 		"exclude-from-classmap": [ "../../includes/media/ThumbnailImage.php" ],
 		"files": [ "includes/ThumbnailImage.php" ]
-	}
+	},
+	"config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
 }
