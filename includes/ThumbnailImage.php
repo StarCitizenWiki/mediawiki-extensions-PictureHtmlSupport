@@ -22,8 +22,9 @@
  * @ingroup Media
  */
 
+// TODO: Replace with MediaWiki\Html\Html when dropping MW 1.39 support
+use Html;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
